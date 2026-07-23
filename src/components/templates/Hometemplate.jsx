@@ -336,7 +336,7 @@ const HomeTemplate = ({
                 </div>
               </div>
             ) : (
-              <div className="text-center py-16 bg-white rounded-2xl border border-gray-200">
+              <div className="text-center py-16 rounded-2xl border border-gray-200">
                 <p className="font-medium text-gray-500">
                   Data wisata populer belum tersedia secara penuh saat ini.
                 </p>
