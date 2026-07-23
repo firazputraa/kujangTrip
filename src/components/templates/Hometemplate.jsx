@@ -321,7 +321,7 @@ const HomeTemplate = ({
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src =
-                              "/src/assets/images/default-gambar.svg";
+                              defaultImage;
                           }}
                         />
                         <div className="absolute bottom-0 w-full bg-linear-to-t from-black/90 via-black/40 to-transparent p-4 text-white flex flex-col justify-end h-2/3">
