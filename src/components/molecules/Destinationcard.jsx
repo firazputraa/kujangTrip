@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../atoms/Buttons";
+import defaultImage from "../../assets/images/default-gambar.svg";
 
 const DestinationCard = ({
   imageUrl,
@@ -54,7 +55,7 @@ const DestinationCard = ({
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = "/src/assets/images/default-gambar.svg";
+              e.target.src = defaultImage;
             }}
           />
         ) : (

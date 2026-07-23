@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../molecules/Destinationcard";
 import LeafletMap from "../molecules/LeafletMap";
+import defaultImage from "../../assets/images/default-gambar.svg";
 
 const DetailTemplate = ({
   place,
@@ -220,7 +221,7 @@ const DetailTemplate = ({
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = "/src/assets/images/default-gambar.svg";
+              e.target.src = defaultImage;
             }}
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
