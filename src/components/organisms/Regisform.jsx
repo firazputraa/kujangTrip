@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import axios from "axios";
 
 import Logo from "../../assets/images/logo.svg";
-import InputField from "../molecules/InputField";
+import InputField from "../molecules/Inputfield";
 import Button from "../atoms/Buttons";
 
 const RegisForm = () => {
