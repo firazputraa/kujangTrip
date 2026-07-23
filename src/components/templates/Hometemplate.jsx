@@ -4,6 +4,8 @@ import Card from "../molecules/Destinationcard";
 import heroDashboard from "../../assets/images/heroDashboard.png";
 import HomeForm from "../organisms/Homeform";
 import TagSelectionPopup from "../organisms/Popuptag";
+import defaultImage from "../../assets/images/default-gambar.svg";
+
 
 const faqDataList = [
   {
@@ -287,7 +289,7 @@ const HomeTemplate = ({
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/src/assets/images/default-gambar.svg";
+                        e.target.src = defaultImage;
                       }}
                     />
                     <div className="absolute bottom-0 w-full bg-linear-to-t from-black/90 via-black/50 to-transparent p-6 text-white flex flex-col justify-end h-3/4">
