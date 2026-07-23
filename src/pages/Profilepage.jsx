@@ -41,7 +41,7 @@ const Profilepage = () => {
         headers: { Authorization: `Bearer ${token}` },
       };
       const responseUser = await axios.get(
-        "http://localhost:5001/users/profile",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/profile",
         config,
       );
       const profileData = responseUser.data.data || responseUser.data;
@@ -69,7 +69,7 @@ const Profilepage = () => {
       setUserData(fetchedUser);
       setOriginalUserData(fetchedUser);
       const responseLikes = await axios.get(
-        "http://localhost:5001/users/likes",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/likes",
         config,
       );
 
@@ -158,13 +158,13 @@ const Profilepage = () => {
       }
 
       await axios.patch(
-        "http://localhost:5001/users/profile",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/profile",
         updatePayload,
         config,
       );
 
       await axios.post(
-        "http://localhost:5001/users/preferences",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/preferences",
         { tags: userData.kategoriPilihan },
         config,
       );
@@ -207,7 +207,7 @@ const Profilepage = () => {
         headers: { Authorization: `Bearer ${token}` },
       };
       await axios.post(
-        "http://localhost:5001/users/likes",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/likes",
         { placeId },
         config,
       );

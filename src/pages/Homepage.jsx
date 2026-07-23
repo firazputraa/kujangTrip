@@ -32,7 +32,7 @@ const Homepage = () => {
       let userTags = [];
       try {
         const resUser = await axios.get(
-          "http://localhost:5001/users/profile",
+          "https://backend-express-tourist-recommendation-production.up.railway.app/users/profile",
           config,
         );
         const profileData = resUser.data?.data || resUser.data || {};
@@ -57,7 +57,7 @@ const Homepage = () => {
       let outputDariModelML = [];
       try {
         const responseML = await axios.get(
-          "http://localhost:5001/places/recommendations",
+          "https://backend-express-tourist-recommendation-production.up.railway.app/places/recommendations",
           config,
         );
         outputDariModelML = responseML.data?.data || [];
@@ -133,7 +133,7 @@ const Homepage = () => {
   const fetchWisataPopuler = async () => {
     try {
       setIsLoadingPopuler(true);
-      const response = await axios.get("http://localhost:5001/places/popular");
+      const response = await axios.get("https://backend-express-tourist-recommendation-production.up.railway.app/places/popular");
       const dataPopuler = response.data?.data || [];
 
       const hasilLengkapPopuler = dataPopuler
@@ -163,7 +163,7 @@ const Homepage = () => {
     }
 
     try {
-      const response = await axios.get("http://localhost:5001/users/likes", {
+      const response = await axios.get("https://backend-express-tourist-recommendation-production.up.railway.app/users/likes", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const likesData = response.data?.data || [];
@@ -207,7 +207,7 @@ const Homepage = () => {
 
     try {
       await axios.post(
-        "http://localhost:5001/users/likes",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/likes",
         { placeId: placeId },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -234,7 +234,7 @@ const Homepage = () => {
 
     try {
       await axios.post(
-        "http://localhost:5001/users/preferences",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/preferences",
         { tags: selectedTags },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -264,7 +264,7 @@ const Homepage = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        "http://localhost:5001/places/random-places",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/places/random-places",
         { headers: { Authorization: `Bearer ${token}` } },
       );
 

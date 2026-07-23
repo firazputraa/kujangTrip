@@ -30,7 +30,7 @@ const DetailPage = () => {
 
         if (placeFound) {
           const similarResponse = await axios.get(
-            `http://localhost:5001/places/${id}/similar`,
+            `https://backend-express-tourist-recommendation-production.up.railway.app/places/${id}/similar`,
           );
           const outputSimilar = similarResponse.data.data || [];
 
@@ -70,7 +70,7 @@ const DetailPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/users/likes",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/likes",
         {
           placeId: id,
         },

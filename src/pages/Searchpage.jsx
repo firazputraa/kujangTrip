@@ -29,7 +29,7 @@ const SearchPage = () => {
           try {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             const responseUser = await axios.get(
-              "http://localhost:5001/users/profile",
+              "https://backend-express-tourist-recommendation-production.up.railway.app/users/profile",
               config,
             );
             const profileData =
@@ -70,7 +70,7 @@ const SearchPage = () => {
         return;
       }
 
-      const response = await axios.get("http://localhost:5001/places/search", {
+      const response = await axios.get("https://backend-express-tourist-recommendation-production.up.railway.app/places/search", {
         params: { query: keyword },
       });
       await new Promise((resolve) => setTimeout(resolve, 600));
@@ -108,7 +108,7 @@ const SearchPage = () => {
   const fetchUserLikes = async () => {
     if (!isLoggedIn || !token) return;
     try {
-      const response = await axios.get("http://localhost:5001/users/likes", {
+      const response = await axios.get("https://backend-express-tourist-recommendation-production.up.railway.app/users/likes", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const likesData = response.data?.data || [];
@@ -151,7 +151,7 @@ const SearchPage = () => {
 
     try {
       await axios.post(
-        "http://localhost:5001/users/likes",
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/likes",
         { placeId: placeId },
         { headers: { Authorization: `Bearer ${token}` } },
       );
