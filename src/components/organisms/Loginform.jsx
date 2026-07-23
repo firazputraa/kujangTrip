@@ -30,10 +30,13 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5001/users/login", {
-        email: email.toLocaleLowerCase(),
-        password,
-      });
+      const response = await axios.post(
+        "backend-express-tourist-recommendation-production.up.railway.app/users/login",
+        {
+          email: email.toLocaleLowerCase(),
+          password,
+        },
+      );
       await new Promise((resolve) => setTimeout(resolve, 1500));
       const token = response.data.data.token;
       login(token);

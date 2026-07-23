@@ -41,7 +41,7 @@ const RegisForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/users/register",
+        "backend-express-tourist-recommendation-production.up.railway.app/users/register",
         {
           email,
           name,
