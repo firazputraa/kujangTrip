@@ -70,9 +70,12 @@ const SearchPage = () => {
         return;
       }
 
-      const response = await axios.get("https://backend-express-tourist-recommendation-production.up.railway.app/places/search", {
-        params: { query: keyword },
-      });
+      const response = await axios.get(
+        "https://backend-express-tourist-recommendation-production.up.railway.app/places/search",
+        {
+          params: { query: keyword },
+        },
+      );
       await new Promise((resolve) => setTimeout(resolve, 600));
       const outputData = response.data.data || [];
       const hasilLengkap = outputData
@@ -108,9 +111,12 @@ const SearchPage = () => {
   const fetchUserLikes = async () => {
     if (!isLoggedIn || !token) return;
     try {
-      const response = await axios.get("https://backend-express-tourist-recommendation-production.up.railway.app/users/likes", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/likes",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       const likesData = response.data?.data || [];
       const likesIds = likesData.map((item) => item.placeId || item.id || item);
       setLikedPlaces(likesIds);
@@ -175,6 +181,11 @@ const SearchPage = () => {
     navigate(`/detail/${placeId}`);
   };
 
+  // Fungsi Cetak Laporan
+  const handlePrintClick = () => {
+    window.print();
+  };
+
   return (
     <SearchTemplate
       searchQuery={searchQuery}
@@ -186,6 +197,7 @@ const SearchPage = () => {
       likedPlaces={likedPlaces}
       onLikeClick={handleLikeClick}
       onCardClick={handleCardClick}
+      onPrintClick={handlePrintClick}
     />
   );
 };

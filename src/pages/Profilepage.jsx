@@ -124,6 +124,7 @@ const Profilepage = () => {
       return { ...prev, kategoriPilihan: tagBaru };
     });
   };
+
   const handleSaveProfile = async () => {
     if (!userData.name.trim() || !userData.email.trim()) {
       Swal.fire({
@@ -217,6 +218,11 @@ const Profilepage = () => {
     }
   };
 
+  // Fungsi Cetak Laporan
+  const handlePrintClick = () => {
+    window.print();
+  };
+
   return (
     <ProfileTemplate
       userData={userData}
@@ -230,6 +236,7 @@ const Profilepage = () => {
       onTagToggle={handleTagToggle}
       onCardClick={handleCardClick}
       onLikeClick={handleLikeClick}
+      onPrintClick={handlePrintClick}
     />
   );
 };

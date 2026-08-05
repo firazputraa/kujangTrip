@@ -6,7 +6,6 @@ import HomeForm from "../organisms/Homeform";
 import TagSelectionPopup from "../organisms/Popuptag";
 import defaultImage from "../../assets/images/default-gambar.svg";
 
-
 const faqDataList = [
   {
     id: 1,
@@ -61,6 +60,7 @@ const HomeTemplate = ({
   onCardClick,
   likedPlaces = [],
   onLikeClick,
+  onPrintClick,
 }) => {
   const [openId, setOpenId] = useState(null);
 
@@ -75,7 +75,35 @@ const HomeTemplate = ({
         onClose={onClosePopup}
         onSubmit={onSubmitPreferences}
       />
-      <div className="w-full bg-white">
+
+      {/* ======================================================== */}
+      {/* 1. KONTEN WEBSITE NORMAL (Disembunyikan saat dicetak PDF) */}
+      {/* ======================================================== */}
+      <div className="print:hidden w-full bg-white">
+        {/* TOMBOL FLOATING CETAK LAPORAN (Khusus Homepage) */}
+        <button
+          onClick={onPrintClick}
+          title="Cetak Laporan Rekomendasi & Populer"
+          className="fixed bottom-6 right-6 z-50 bg-red-600 hover:bg-red-700 text-white p-4 rounded-full shadow-2xl flex items-center gap-3 transition-transform hover:scale-105 group"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+            ></path>
+          </svg>
+          <span className="font-bold hidden group-hover:block overflow-hidden whitespace-nowrap pr-2">
+            Cetak PDF
+          </span>
+        </button>
+
         {/* --- SECTION HERO --- */}
         <section className="min-h-screen relative">
           <img
@@ -320,8 +348,7 @@ const HomeTemplate = ({
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src =
-                              defaultImage;
+                            e.target.src = defaultImage;
                           }}
                         />
                         <div className="absolute bottom-0 w-full bg-linear-to-t from-black/90 via-black/40 to-transparent p-4 text-white flex flex-col justify-end h-2/3">
@@ -483,6 +510,149 @@ const HomeTemplate = ({
             </div>
           </div>
         </section>
+      </div>
+
+      {/* ======================================================== */}
+      {/* 2. KERTAS LAPORAN CETAK PDF (Muncul HANYA saat dicetak) */}
+      {/* ======================================================== */}
+      <div className="hidden print:block w-full bg-white text-black p-8 font-sans">
+        {/* KOP SURAT */}
+        <div className="border-b-4 border-black pb-4 mb-6 flex flex-col items-center text-center">
+          <h1 className="text-2xl font-bold uppercase tracking-wider">
+            KujangTrip - Sistem Rekomendasi Wisata
+          </h1>
+          <h2 className="text-xl font-bold uppercase tracking-wide">
+            Dinas Pariwisata dan Kebudayaan Kota Bogor
+          </h2>
+          <p className="text-sm mt-1">
+            Jl. Pandu Raya No.45, Bantarjati, Kec. Bogor Utara, Kota Bogor, Jawa
+            Barat 16153
+          </p>
+          <p className="text-sm">
+            Telepon: (0251) 8322055 | Email: info@kujangtrip.com
+          </p>
+        </div>
+
+        {/* JUDUL LAPORAN */}
+        <h3 className="text-center text-xl font-bold underline mb-8 uppercase">
+          Laporan Rekomendasi Destinasi KujangTrip
+        </h3>
+
+        {/* TABEL REKOMENDASI (TOP-N) */}
+        <div className="mb-10">
+          <h4 className="font-bold text-lg mb-2">
+            A. Top Rekomendasi Wisata Personal (Untuk Pengguna Ini)
+          </h4>
+          {rekomendasi && rekomendasi.length > 0 ? (
+            <table className="w-full border-collapse border border-black text-sm text-left">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="border border-black px-4 py-2 w-12 text-center">
+                    No
+                  </th>
+                  <th className="border border-black px-4 py-2">
+                    Nama Destinasi
+                  </th>
+                  <th className="border border-black px-4 py-2 w-32 text-center">
+                    Kategori
+                  </th>
+                  <th className="border border-black px-4 py-2 w-24 text-center">
+                    Rating
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {rekomendasi.slice(0, 10).map((tempat, index) => (
+                  <tr key={tempat.placeId || index}>
+                    <td className="border border-black px-4 py-2 text-center">
+                      {index + 1}
+                    </td>
+                    <td className="border border-black px-4 py-2">
+                      {tempat.place_name || tempat.name}
+                    </td>
+                    <td className="border border-black px-4 py-2 text-center">
+                      {tempat.tag || tempat.kategori}
+                    </td>
+                    <td className="border border-black px-4 py-2 text-center">
+                      {tempat.rating}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className="text-sm italic">
+              Belum ada rekomendasi yang tersedia.
+            </p>
+          )}
+        </div>
+
+        {/* TABEL POPULER */}
+        <div className="mb-10">
+          <h4 className="font-bold text-lg mb-2">
+            B. Top 5 Destinasi Populer (Seluruh Pengguna)
+          </h4>
+          {populer && populer.length > 0 ? (
+            <table className="w-full border-collapse border border-black text-sm text-left">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="border border-black px-4 py-2 w-12 text-center">
+                    Peringkat
+                  </th>
+                  <th className="border border-black px-4 py-2">
+                    Nama Destinasi
+                  </th>
+                  <th className="border border-black px-4 py-2 w-32 text-center">
+                    Kategori
+                  </th>
+                  <th className="border border-black px-4 py-2 w-24 text-center">
+                    Rating
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {populer.slice(0, 5).map((tempat, index) => (
+                  <tr key={tempat.placeId || index}>
+                    <td className="border border-black px-4 py-2 text-center font-bold">
+                      #{index + 1}
+                    </td>
+                    <td className="border border-black px-4 py-2">
+                      {tempat.place_name || tempat.name}
+                    </td>
+                    <td className="border border-black px-4 py-2 text-center">
+                      {tempat.tag || tempat.kategori}
+                    </td>
+                    <td className="border border-black px-4 py-2 text-center">
+                      {tempat.rating}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className="text-sm italic">
+              Data tempat wisata populer belum tersedia.
+            </p>
+          )}
+        </div>
+
+        {/* RUANG TANDA TANGAN */}
+        <div className="mt-16 flex justify-end pr-10 text-black">
+          <div className="text-center w-64">
+            <p className="mb-20">
+              Bogor,{" "}
+              {new Date().toLocaleDateString("id-ID", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+            <p className="font-bold underline">
+              Muhamad Firaz Putra Sri Ardhya
+            </p>
+            <p>Administrator KujangTrip</p>
+          </div>
+        </div>
       </div>
     </>
   );

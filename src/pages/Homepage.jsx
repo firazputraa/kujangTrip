@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/Authcontext";
 import axios from "axios";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 
 import HomeTemplate from "../components/templates/Hometemplate";
 import dataWisata from "../data/dataset_wisata_gabungan_cleaned_final_1.2.json";
@@ -133,7 +133,9 @@ const Homepage = () => {
   const fetchWisataPopuler = async () => {
     try {
       setIsLoadingPopuler(true);
-      const response = await axios.get("https://backend-express-tourist-recommendation-production.up.railway.app/places/popular");
+      const response = await axios.get(
+        "https://backend-express-tourist-recommendation-production.up.railway.app/places/popular",
+      );
       const dataPopuler = response.data?.data || [];
 
       const hasilLengkapPopuler = dataPopuler
@@ -163,9 +165,12 @@ const Homepage = () => {
     }
 
     try {
-      const response = await axios.get("https://backend-express-tourist-recommendation-production.up.railway.app/users/likes", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        "https://backend-express-tourist-recommendation-production.up.railway.app/users/likes",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       const likesData = response.data?.data || [];
       const likesIds = likesData.map((item) => item.placeId || item.id || item);
       setLikedPlaces(likesIds);
@@ -293,6 +298,11 @@ const Homepage = () => {
     navigate(`/detail/${placeId}`);
   };
 
+  // Fungsi Cetak Laporan
+  const handlePrintClick = () => {
+    window.print();
+  };
+
   return (
     <HomeTemplate
       rekomendasi={rekomendasi}
@@ -305,6 +315,7 @@ const Homepage = () => {
       onCardClick={handleDetailOnClick}
       likedPlaces={likedPlaces}
       onLikeClick={handleLikeClick}
+      onPrintClick={handlePrintClick}
     />
   );
 };
