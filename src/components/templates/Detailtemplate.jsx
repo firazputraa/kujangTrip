@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../molecules/Destinationcard";
 import LeafletMap from "../molecules/LeafletMap";
 import defaultImage from "../../assets/images/default-gambar.svg";
-import logoBogor from "../../assets/images/logo-bogor.png";
+import logoKotaBogor from "../../assets/images/logoKotaBogor.png";
 
 const DetailTemplate = ({
   place,
@@ -343,7 +343,7 @@ const DetailTemplate = ({
           <div className="border-b-[1.5px] border-black pb-3 flex items-center justify-between">
             <div className="w-20 shrink-0 flex justify-center">
               <img
-                src={logoBogor}
+                src={logoKotaBogor}
                 alt="Logo Kota Bogor"
                 className="w-16 h-auto object-contain"
               />

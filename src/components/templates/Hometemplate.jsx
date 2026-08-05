@@ -5,7 +5,7 @@ import heroDashboard from "../../assets/images/heroDashboard.png";
 import HomeForm from "../organisms/Homeform";
 import TagSelectionPopup from "../organisms/Popuptag";
 import defaultImage from "../../assets/images/default-gambar.svg";
-import logoBogor from "../../assets/images/logo-bogor.png";
+import logoKotaBogor from "../../assets/images/logoKotaBogor.png";
 
 const faqDataList = [
   {

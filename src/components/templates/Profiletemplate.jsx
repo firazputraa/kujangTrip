@@ -2,7 +2,7 @@ import React from "react";
 import InputField from "../molecules/Inputfield";
 import DestinationCard from "../molecules/Destinationcard";
 import profile1 from "../../assets/images/profile1.jpg";
-import logoBogor from "../../assets/images/logo-bogor.png";
+import logoKotaBogor from "../../assets/images/logoKotaBogor.png";
 
 const DAFTAR_KATEGORI_WISATA = [
   "Alam",
@@ -269,7 +269,7 @@ const ProfileTemplate = ({
           <div className="border-b-[1.5px] border-black pb-3 flex items-center justify-between">
             <div className="w-20 shrink-0 flex justify-center">
               <img
-                src={logoBogor}
+                src={logoKotaBogor}
                 alt="Logo Kota Bogor"
                 className="w-16 h-auto object-contain"
               />
