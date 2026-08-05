@@ -15,10 +15,9 @@ const SearchTemplate = ({
 }) => {
   return (
     <>
-      {/* ======================================================== */}
-      {/* 1. KONTEN WEBSITE NORMAL (Disembunyikan saat dicetak PDF) */}
-      {/* ======================================================== */}
+      {/* --- KONTEN WEBSITE (Disembunyikan saat print) --- */}
       <div className="print:hidden relative overflow-hidden min-h-screen bg-white pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+        {/* Dekorasi 1-4 Tetap seperti aslinya */}
         <div className="hidden lg:block absolute top-20 -left-10 z-0 pointer-events-none opacity-60">
           <svg
             width="350"
@@ -41,8 +40,6 @@ const SearchTemplate = ({
             <circle cx="200" cy="76" r="5" fill="white" />
           </svg>
         </div>
-
-        {/* Dekorasi 2: Koper Travel (Kanan Tengah) */}
         <div className="hidden lg:block absolute top-[40%] -right-8 z-0 pointer-events-none opacity-40 rotate-12">
           <svg
             width="200"
@@ -58,8 +55,6 @@ const SearchTemplate = ({
             <circle cx="10" cy="14" r="1" fill="#0038FF" stroke="none" />
           </svg>
         </div>
-
-        {/* Dekorasi 3: Pesawat Kertas & Garis Jalur (Kiri Bawah) */}
         <div className="hidden lg:block absolute bottom-[15%] -left-16 z-0 pointer-events-none opacity-50 -rotate-6">
           <svg
             width="400"
@@ -81,8 +76,6 @@ const SearchTemplate = ({
             />
           </svg>
         </div>
-
-        {/* Dekorasi 4: Pin Lokasi Kecil (Kanan Bawah) */}
         <div className="hidden lg:block absolute bottom-10 right-10 z-0 pointer-events-none opacity-50 -rotate-12">
           <svg
             width="200"
@@ -152,7 +145,7 @@ const SearchTemplate = ({
               </div>
             </form>
 
-            {/* TOMBOL CETAK PDF (Muncul jika ada hasil) */}
+            {/* TOMBOL CETAK PDF */}
             {searchResults.length > 0 && !isLoading && (
               <div className="max-w-2xl mx-auto flex justify-end mb-10">
                 <button
@@ -236,73 +229,74 @@ const SearchTemplate = ({
       </div>
 
       {/* ======================================================== */}
-      {/* 2. KERTAS LAPORAN CETAK PDF (Muncul HANYA saat dicetak) */}
+      {/* 2. KERTAS LAPORAN CETAK PDF */}
       {/* ======================================================== */}
-      <div className="hidden print:block w-full bg-white text-black p-8 font-sans">
+      <style>{`
+        @media print {
+          @page { size: A4 portrait; margin: 20mm; }
+          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Times New Roman', Times, serif; }
+          .avoid-break { page-break-inside: avoid; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+          th, td { border: 1px solid #000; padding: 8px 12px; }
+          th { background-color: #f3f4f6 !important; font-weight: bold; }
+        }
+      `}</style>
+
+      <div className="hidden print:block w-full bg-white text-black font-serif">
         {/* KOP SURAT */}
-        <div className="border-b-4 border-black pb-4 mb-6 flex flex-col items-center text-center">
-          <h1 className="text-2xl font-bold uppercase tracking-wider">
-            KujangTrip - Sistem Rekomendasi Wisata
-          </h1>
-          <h2 className="text-xl font-bold uppercase tracking-wide">
-            Dinas Pariwisata dan Kebudayaan Kota Bogor
-          </h2>
-          <p className="text-sm mt-1">
-            Jl. Pandu Raya No.45, Bantarjati, Kec. Bogor Utara, Kota Bogor, Jawa
-            Barat 16153
-          </p>
-          <p className="text-sm">
-            Telepon: (0251) 8322055 | Email: info@kujangtrip.com
-          </p>
+        <div className="border-b-4 border-black mb-1 pb-1">
+          <div className="border-b-[1px] border-black pb-4 flex flex-col items-center text-center">
+            <h1 className="text-2xl font-bold uppercase tracking-wider leading-tight">
+              KujangTrip - Sistem Rekomendasi Wisata
+            </h1>
+            <h2 className="text-lg font-bold uppercase tracking-wide leading-tight">
+              Dinas Pariwisata dan Kebudayaan Kota Bogor
+            </h2>
+            <p className="text-sm mt-2">
+              Jl. Pandu Raya No.45, Bantarjati, Kec. Bogor Utara, Kota Bogor,
+              Jawa Barat 16153
+            </p>
+            <p className="text-sm">
+              Telepon: (0251) 8322055 | Email: info@kujangtrip.com
+            </p>
+          </div>
         </div>
 
         {/* JUDUL LAPORAN */}
-        <h3 className="text-center text-xl font-bold underline mb-2 uppercase">
-          Laporan Hasil Pencarian Wisata
-        </h3>
-        <p className="text-center mb-8 italic">
-          Kata Kunci: "{searchQuery || "Seluruh Destinasi"}"
-        </p>
+        <div className="text-center mt-6 mb-8">
+          <h3 className="text-xl font-bold uppercase underline mb-1">
+            Laporan Hasil Pencarian Wisata
+          </h3>
+          <p className="italic text-sm">
+            Kata Kunci: "{searchQuery || "Seluruh Destinasi"}"
+          </p>
+        </div>
 
         {/* TABEL HASIL PENCARIAN */}
-        <div>
+        <div className="mb-10">
           {searchResults && searchResults.length > 0 ? (
-            <table className="w-full border-collapse border border-black text-sm text-left">
+            <table>
               <thead>
-                <tr className="bg-gray-200">
-                  <th className="border border-black px-4 py-2 w-12 text-center">
-                    No
-                  </th>
-                  <th className="border border-black px-4 py-2">
-                    Nama Destinasi
-                  </th>
-                  <th className="border border-black px-4 py-2 w-32 text-center">
-                    Kategori
-                  </th>
-                  <th className="border border-black px-4 py-2 w-24 text-center">
-                    Rating
-                  </th>
-                  <th className="border border-black px-4 py-2">
-                    Alamat Lengkap
-                  </th>
+                <tr>
+                  <th className="w-12 text-center">No</th>
+                  <th className="w-1/4">Nama Destinasi</th>
+                  <th className="w-24 text-center">Kategori</th>
+                  <th className="w-20 text-center">Rating</th>
+                  <th>Alamat Lengkap</th>
                 </tr>
               </thead>
               <tbody>
                 {searchResults.map((tempat, index) => (
-                  <tr key={tempat.placeId || index}>
-                    <td className="border border-black px-4 py-2 text-center align-top">
-                      {index + 1}
-                    </td>
-                    <td className="border border-black px-4 py-2 align-top">
+                  <tr key={tempat.placeId || index} className="avoid-break">
+                    <td className="text-center align-top">{index + 1}</td>
+                    <td className="align-top font-bold">
                       {tempat.place_name || tempat.name}
                     </td>
-                    <td className="border border-black px-4 py-2 text-center align-top">
+                    <td className="text-center align-top">
                       {tempat.tag || tempat.kategori}
                     </td>
-                    <td className="border border-black px-4 py-2 text-center align-top">
-                      {tempat.rating}
-                    </td>
-                    <td className="border border-black px-4 py-2 align-top text-xs leading-relaxed">
+                    <td className="text-center align-top">{tempat.rating}</td>
+                    <td className="align-top text-xs leading-relaxed">
                       {tempat.address}
                     </td>
                   </tr>
@@ -310,16 +304,16 @@ const SearchTemplate = ({
               </tbody>
             </table>
           ) : (
-            <p className="text-sm italic text-center border py-10">
+            <p className="text-sm italic text-center border border-black py-10">
               Data tidak ditemukan.
             </p>
           )}
         </div>
 
         {/* RUANG TANDA TANGAN */}
-        <div className="mt-16 flex justify-end pr-10 text-black">
+        <div className="mt-16 flex justify-end pr-10 text-black avoid-break">
           <div className="text-center w-64">
-            <p className="mb-20">
+            <p className="mb-24">
               Bogor,{" "}
               {new Date().toLocaleDateString("id-ID", {
                 day: "numeric",
@@ -330,7 +324,7 @@ const SearchTemplate = ({
             <p className="font-bold underline">
               Muhamad Firaz Putra Sri Ardhya
             </p>
-            <p>Administrator KujangTrip</p>
+            <p className="text-sm">Administrator KujangTrip</p>
           </div>
         </div>
       </div>

@@ -27,9 +27,7 @@ const ProfileTemplate = ({
 }) => {
   return (
     <>
-      {/* ======================================================== */}
-      {/* 1. KONTEN WEBSITE NORMAL (Disembunyikan saat dicetak PDF) */}
-      {/* ======================================================== */}
+      {/* --- KONTEN WEBSITE (Disembunyikan saat print) --- */}
       <div className="print:hidden min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto space-y-8 md:space-y-10">
           {isLoading ? (
@@ -38,8 +36,8 @@ const ProfileTemplate = ({
             </div>
           ) : (
             <>
+              {/* Bagian Profil */}
               <section className="bg-white shadow-md hover:shadow-lg transition-shadow border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-8">
-                {/* Kolom Kiri: Foto Avatar */}
                 <div className="w-full md:w-64 flex flex-col items-center shrink-0">
                   <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col items-center w-full max-w-xs md:max-w-full shadow-sm">
                     <div className="relative w-32 h-32 sm:w-36 sm:h-36">
@@ -122,11 +120,7 @@ const ProfileTemplate = ({
                                 onClick={() =>
                                   onTagToggle && onTagToggle(kategori)
                                 }
-                                className={`px-4 py-1.5 rounded-full font-bold text-xs sm:text-sm border transition-all cursor-pointer ${
-                                  isSelected
-                                    ? "bg-[#0038FF] text-white border-[#0038FF] shadow-md shadow-blue-500/20"
-                                    : "bg-gray-100 text-gray-600 border-gray-300 hover:bg-gray-200"
-                                }`}
+                                className={`px-4 py-1.5 rounded-full font-bold text-xs sm:text-sm border transition-all cursor-pointer ${isSelected ? "bg-[#0038FF] text-white border-[#0038FF] shadow-md shadow-blue-500/20" : "bg-gray-100 text-gray-600 border-gray-300 hover:bg-gray-200"}`}
                               >
                                 {isSelected ? `✓ ${kategori}` : `+ ${kategori}`}
                               </button>
@@ -181,6 +175,7 @@ const ProfileTemplate = ({
                 </div>
               </section>
 
+              {/* Bagian Wisata Disukai */}
               <section className="bg-white shadow-md border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10">
                 <div className="border-b border-gray-200 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-3 flex-wrap">
@@ -191,7 +186,7 @@ const ProfileTemplate = ({
                       {likePlaces?.length || 0} Destinasi Disimpan
                     </span>
                   </div>
-                  {/* TOMBOL CETAK PDF (Muncul di Website, Hilang di Print) */}
+                  {/* TOMBOL CETAK */}
                   <button
                     onClick={onPrintClick}
                     className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
@@ -256,47 +251,72 @@ const ProfileTemplate = ({
       </div>
 
       {/* ======================================================== */}
-      {/* 2. KERTAS LAPORAN CETAK PDF (Muncul HANYA saat dicetak) */}
+      {/* 2. KERTAS LAPORAN CETAK PDF (Dengan CSS Khusus Tinta/Warna) */}
       {/* ======================================================== */}
-      <div className="hidden print:block w-full bg-white text-black p-8 font-sans">
-        {/* KOP SURAT */}
-        <div className="border-b-4 border-black pb-4 mb-6 flex flex-col items-center text-center">
-          <h1 className="text-2xl font-bold uppercase tracking-wider">
-            KujangTrip - Sistem Rekomendasi Wisata
-          </h1>
-          <h2 className="text-xl font-bold uppercase tracking-wide">
-            Dinas Pariwisata dan Kebudayaan Kota Bogor
-          </h2>
-          <p className="text-sm mt-1">
-            Jl. Pandu Raya No.45, Bantarjati, Kec. Bogor Utara, Kota Bogor, Jawa
-            Barat 16153
-          </p>
-          <p className="text-sm">
-            Telepon: (0251) 8322055 | Email: info@kujangtrip.com
-          </p>
+      <style>{`
+        @media print {
+          @page { size: A4 portrait; margin: 20mm; }
+          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Times New Roman', Times, serif; }
+          .avoid-break { page-break-inside: avoid; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+          th, td { border: 1px solid #000; padding: 8px 12px; }
+          th { background-color: #f3f4f6 !important; font-weight: bold; }
+        }
+      `}</style>
+
+      <div className="hidden print:block w-full bg-white text-black font-serif">
+        {/* KOP SURAT (Dipercantik dengan border double) */}
+        <div className="border-b-4 border-black mb-1 pb-1">
+          <div className="border-b-[1px] border-black pb-4 flex flex-col items-center text-center">
+            <h1 className="text-2xl font-bold uppercase tracking-wider leading-tight">
+              KujangTrip - Sistem Rekomendasi Wisata
+            </h1>
+            <h2 className="text-lg font-bold uppercase tracking-wide leading-tight">
+              Dinas Pariwisata dan Kebudayaan Kota Bogor
+            </h2>
+            <p className="text-sm mt-2">
+              Jl. Pandu Raya No.45, Bantarjati, Kec. Bogor Utara, Kota Bogor,
+              Jawa Barat 16153
+            </p>
+            <p className="text-sm">
+              Telepon: (0251) 8322055 | Email: info@kujangtrip.com
+            </p>
+          </div>
         </div>
 
         {/* JUDUL LAPORAN */}
-        <h3 className="text-center text-xl font-bold underline mb-8 uppercase">
-          Laporan Profil & Wisata Disukai
-        </h3>
+        <div className="text-center mt-6 mb-8">
+          <h3 className="text-xl font-bold uppercase underline">
+            Laporan Profil & Wisata Disukai
+          </h3>
+        </div>
 
         {/* DATA PROFIL */}
-        <div className="mb-8">
-          <h4 className="font-bold text-lg mb-2">A. Data Pengguna</h4>
-          <table className="w-full max-w-2xl text-left text-sm">
+        <div className="mb-8 avoid-break">
+          <h4 className="font-bold text-md mb-3">A. Data Pengguna</h4>
+          <table className="w-full max-w-xl text-left text-sm border-none">
             <tbody>
               <tr>
-                <th className="py-1 w-48 align-top">Nama Pengguna</th>
-                <td className="py-1 align-top">: {userData?.name || "-"}</td>
+                <td className="w-48 font-bold border-none py-1 px-0">
+                  Nama Pengguna
+                </td>
+                <td className="border-none py-1 px-0">
+                  : {userData?.name || "-"}
+                </td>
               </tr>
               <tr>
-                <th className="py-1 align-top">Alamat Email</th>
-                <td className="py-1 align-top">: {userData?.email || "-"}</td>
+                <td className="font-bold border-none py-1 px-0">
+                  Alamat Email
+                </td>
+                <td className="border-none py-1 px-0">
+                  : {userData?.email || "-"}
+                </td>
               </tr>
               <tr>
-                <th className="py-1 align-top">Preferensi Kategori</th>
-                <td className="py-1 align-top">
+                <td className="font-bold border-none py-1 px-0 align-top">
+                  Preferensi Kategori
+                </td>
+                <td className="border-none py-1 px-0 align-top">
                   : {userData?.kategoriPilihan?.join(", ") || "-"}
                 </td>
               </tr>
@@ -305,56 +325,45 @@ const ProfileTemplate = ({
         </div>
 
         {/* TABEL WISATA DISUKAI */}
-        <div>
-          <h4 className="font-bold text-lg mb-2">B. Daftar Wisata Disukai</h4>
+        <div className="mb-10">
+          <h4 className="font-bold text-md mb-3">B. Daftar Wisata Disukai</h4>
           {likePlaces && likePlaces.length > 0 ? (
-            <table className="w-full border-collapse border border-black text-sm text-left">
+            <table>
               <thead>
-                <tr className="bg-gray-200">
-                  <th className="border border-black px-4 py-2 w-12 text-center">
-                    No
-                  </th>
-                  <th className="border border-black px-4 py-2">
-                    Nama Destinasi
-                  </th>
-                  <th className="border border-black px-4 py-2 w-32 text-center">
-                    Kategori
-                  </th>
-                  <th className="border border-black px-4 py-2 w-24 text-center">
-                    Rating
-                  </th>
+                <tr>
+                  <th className="w-12 text-center">No</th>
+                  <th>Nama Destinasi</th>
+                  <th className="w-32 text-center">Kategori</th>
+                  <th className="w-24 text-center">Rating</th>
                 </tr>
               </thead>
               <tbody>
                 {likePlaces.map((tempat, index) => (
-                  <tr key={tempat.placeId || tempat.id || index}>
-                    <td className="border border-black px-4 py-2 text-center">
-                      {index + 1}
-                    </td>
-                    <td className="border border-black px-4 py-2">
-                      {tempat.place_name || tempat.name}
-                    </td>
-                    <td className="border border-black px-4 py-2 text-center">
+                  <tr
+                    key={tempat.placeId || tempat.id || index}
+                    className="avoid-break"
+                  >
+                    <td className="text-center">{index + 1}</td>
+                    <td>{tempat.place_name || tempat.name}</td>
+                    <td className="text-center">
                       {tempat.tag || tempat.kategori}
                     </td>
-                    <td className="border border-black px-4 py-2 text-center">
-                      {tempat.rating}
-                    </td>
+                    <td className="text-center">{tempat.rating}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p className="text-sm italic">
+            <p className="text-sm italic ml-4">
               Pengguna belum menyukai wisata apapun.
             </p>
           )}
         </div>
 
         {/* RUANG TANDA TANGAN */}
-        <div className="mt-16 flex justify-end pr-10 text-black">
+        <div className="mt-16 flex justify-end pr-10 text-black avoid-break">
           <div className="text-center w-64">
-            <p className="mb-20">
+            <p className="mb-24">
               Bogor,{" "}
               {new Date().toLocaleDateString("id-ID", {
                 day: "numeric",
@@ -365,7 +374,7 @@ const ProfileTemplate = ({
             <p className="font-bold underline">
               Muhamad Firaz Putra Sri Ardhya
             </p>
-            <p>Administrator KujangTrip</p>
+            <p className="text-sm">Administrator KujangTrip</p>
           </div>
         </div>
       </div>

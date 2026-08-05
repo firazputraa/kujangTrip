@@ -76,10 +76,8 @@ const HomeTemplate = ({
         onSubmit={onSubmitPreferences}
       />
 
-      {/* ======================================================== */}
-      {/* 1. KONTEN WEBSITE NORMAL (Disembunyikan saat dicetak PDF) */}
-      {/* ======================================================== */}
-      <div className="print:hidden w-full bg-white">
+      {/* --- KONTEN WEBSITE NORMAL --- */}
+      <div className="print:hidden w-full bg-white relative">
         {/* TOMBOL FLOATING CETAK LAPORAN (Khusus Homepage) */}
         <button
           onClick={onPrintClick}
@@ -104,7 +102,7 @@ const HomeTemplate = ({
           </span>
         </button>
 
-        {/* --- SECTION HERO --- */}
+        {/* SECTION HERO */}
         <section className="min-h-screen relative">
           <img
             src={heroDashboard}
@@ -125,9 +123,8 @@ const HomeTemplate = ({
           </div>
         </section>
 
-        {/* --- SECTION REKOMENDASI UNTUKMU --- */}
+        {/* SECTION REKOMENDASI UNTUKMU */}
         <section className="relative pt-20 pb-16 overflow-hidden">
-          {/* Floating SVG Area Rekomendasi */}
           <div className="pointer-events-none absolute top-10 right-[-5%] w-72 h-72 text-[#003BFF] opacity-10 z-0 hidden lg:block">
             <svg
               viewBox="0 0 24 24"
@@ -175,7 +172,6 @@ const HomeTemplate = ({
             </svg>
           </div>
 
-          {/* Konten Rekomendasi */}
           <div className="relative z-10 mx-5 md:mx-10 lg:mx-20">
             <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900">
               Rekomendasi <span className="text-[#0061FF]">Untukmu</span>
@@ -184,7 +180,6 @@ const HomeTemplate = ({
               Temukan wisata terbaik yang diracik khusus sesuai dengan
               preferensimu
             </p>
-
             {isLoading ? (
               <div className="flex justify-center items-center h-64">
                 <p className="font-semibold animate-pulse text-lg text-[#003BFF]">
@@ -229,7 +224,7 @@ const HomeTemplate = ({
                   <div className="mt-12 flex justify-center">
                     <Link
                       to="/search"
-                      className="bg-blue-50 hover:bg-[#0038FF] text-[#0038FF] hover:text-white border border-blue-200 hover:border-[#0038FF] font-bold px-4 py-2 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2.5 group cursor-pointer"
+                      className="bg-blue-50 hover:bg-[#0038FF] text-[#0038FF] hover:text-white border border-blue-200 hover:border-[#0038FF] font-bold px-4 py-2 rounded-xl transition-all duration-300 shadow-sm flex items-center gap-2.5 group cursor-pointer"
                     >
                       <span>Lihat Semua</span>
                       <span className="group-hover:translate-x-1.5 transition-transform duration-300 text-lg">
@@ -243,9 +238,8 @@ const HomeTemplate = ({
           </div>
         </section>
 
-        {/* --- SECTION WISATA POPULER --- */}
+        {/* SECTION WISATA POPULER */}
         <section className="relative pt-20 pb-16 bg-slate-50 overflow-hidden">
-          {/* Floating SVG Area Populer */}
           <div className="pointer-events-none absolute top-5 left-[-2%] w-80 h-80 text-[#003BFF] opacity-10 z-0 -rotate-12 hidden lg:block">
             <svg
               viewBox="0 0 24 24"
@@ -282,8 +276,6 @@ const HomeTemplate = ({
               />
             </svg>
           </div>
-
-          {/* Konten Populer */}
           <div className="relative z-10 mb-6 mx-5 md:mx-10 lg:mx-20">
             <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900">
               Wisata <span className="text-[#0061FF]">Populer</span>
@@ -293,7 +285,6 @@ const HomeTemplate = ({
               pelancong di Kota Bogor.
             </p>
           </div>
-
           <div className="relative z-10 mx-5 md:mx-10 lg:mx-20">
             {isLoadingPopuler ? (
               <div className="flex justify-center items-center h-64">
@@ -374,9 +365,8 @@ const HomeTemplate = ({
           </div>
         </section>
 
-        {/* --- SECTION FAQ --- */}
+        {/* SECTION FAQ */}
         <section className="relative pt-20 pb-24 overflow-hidden">
-          {/* Floating SVG Area FAQ */}
           <div className="pointer-events-none absolute top-10 right-[-2%] w-60 h-60 text-[#003BFF] opacity-10 z-0 rotate-12 hidden lg:block">
             <svg
               viewBox="0 0 24 24"
@@ -429,8 +419,6 @@ const HomeTemplate = ({
               <circle cx="80" cy="47" r="3" fill="white" />
             </svg>
           </div>
-
-          {/* Konten FAQ */}
           <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-black mb-4 tracking-tight">
@@ -441,7 +429,6 @@ const HomeTemplate = ({
                 agar persiapan liburanmu di Bogor makin lancar
               </p>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
               {faqDataList.map((faq) => {
                 const isOpen = openId === faq.id;
@@ -461,7 +448,7 @@ const HomeTemplate = ({
                         {isOpen ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-7 w-7 sm:h-8 sm:w-8 transition-transform duration-300"
+                            className="h-7 w-7 sm:h-8 sm:w-8"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -476,7 +463,7 @@ const HomeTemplate = ({
                         ) : (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-7 w-7 sm:h-8 sm:w-8 transition-transform duration-300"
+                            className="h-7 w-7 sm:h-8 sm:w-8"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -492,11 +479,7 @@ const HomeTemplate = ({
                       </span>
                     </button>
                     <div
-                      className={`grid transition-all duration-300 ease-in-out ${
-                        isOpen
-                          ? "grid-rows-[1fr] opacity-100 border-t-[2.5px] border-black"
-                          : "grid-rows-[0fr] opacity-0"
-                      }`}
+                      className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100 border-t-[2.5px] border-black" : "grid-rows-[0fr] opacity-0"}`}
                     >
                       <div className="overflow-hidden">
                         <p className="p-4 sm:p-5 text-gray-900 text-sm sm:text-base leading-relaxed font-medium">
@@ -513,133 +496,118 @@ const HomeTemplate = ({
       </div>
 
       {/* ======================================================== */}
-      {/* 2. KERTAS LAPORAN CETAK PDF (Muncul HANYA saat dicetak) */}
+      {/* 2. KERTAS LAPORAN CETAK PDF */}
       {/* ======================================================== */}
-      <div className="hidden print:block w-full bg-white text-black p-8 font-sans">
+      <style>{`
+        @media print {
+          @page { size: A4 portrait; margin: 20mm; }
+          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Times New Roman', Times, serif; }
+          .avoid-break { page-break-inside: avoid; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+          th, td { border: 1px solid #000; padding: 8px 12px; }
+          th { background-color: #f3f4f6 !important; font-weight: bold; }
+        }
+      `}</style>
+
+      <div className="hidden print:block w-full bg-white text-black font-serif">
         {/* KOP SURAT */}
-        <div className="border-b-4 border-black pb-4 mb-6 flex flex-col items-center text-center">
-          <h1 className="text-2xl font-bold uppercase tracking-wider">
-            KujangTrip - Sistem Rekomendasi Wisata
-          </h1>
-          <h2 className="text-xl font-bold uppercase tracking-wide">
-            Dinas Pariwisata dan Kebudayaan Kota Bogor
-          </h2>
-          <p className="text-sm mt-1">
-            Jl. Pandu Raya No.45, Bantarjati, Kec. Bogor Utara, Kota Bogor, Jawa
-            Barat 16153
-          </p>
-          <p className="text-sm">
-            Telepon: (0251) 8322055 | Email: info@kujangtrip.com
-          </p>
+        <div className="border-b-4 border-black mb-1 pb-1">
+          <div className="border-b-[1px] border-black pb-4 flex flex-col items-center text-center">
+            <h1 className="text-2xl font-bold uppercase tracking-wider leading-tight">
+              KujangTrip - Sistem Rekomendasi Wisata
+            </h1>
+            <h2 className="text-lg font-bold uppercase tracking-wide leading-tight">
+              Dinas Pariwisata dan Kebudayaan Kota Bogor
+            </h2>
+            <p className="text-sm mt-2">
+              Jl. Pandu Raya No.45, Bantarjati, Kec. Bogor Utara, Kota Bogor,
+              Jawa Barat 16153
+            </p>
+            <p className="text-sm">
+              Telepon: (0251) 8322055 | Email: info@kujangtrip.com
+            </p>
+          </div>
         </div>
 
         {/* JUDUL LAPORAN */}
-        <h3 className="text-center text-xl font-bold underline mb-8 uppercase">
-          Laporan Rekomendasi Destinasi KujangTrip
-        </h3>
+        <div className="text-center mt-6 mb-8">
+          <h3 className="text-xl font-bold uppercase underline mb-1">
+            Laporan Rekomendasi & Destinasi Populer
+          </h3>
+        </div>
 
         {/* TABEL REKOMENDASI (TOP-N) */}
-        <div className="mb-10">
-          <h4 className="font-bold text-lg mb-2">
-            A. Top Rekomendasi Wisata Personal (Untuk Pengguna Ini)
+        <div className="mb-10 avoid-break">
+          <h4 className="font-bold text-md mb-3">
+            A. Top Rekomendasi Wisata Personal
           </h4>
           {rekomendasi && rekomendasi.length > 0 ? (
-            <table className="w-full border-collapse border border-black text-sm text-left">
+            <table>
               <thead>
-                <tr className="bg-gray-200">
-                  <th className="border border-black px-4 py-2 w-12 text-center">
-                    No
-                  </th>
-                  <th className="border border-black px-4 py-2">
-                    Nama Destinasi
-                  </th>
-                  <th className="border border-black px-4 py-2 w-32 text-center">
-                    Kategori
-                  </th>
-                  <th className="border border-black px-4 py-2 w-24 text-center">
-                    Rating
-                  </th>
+                <tr>
+                  <th className="w-12 text-center">No</th>
+                  <th>Nama Destinasi</th>
+                  <th className="w-32 text-center">Kategori</th>
+                  <th className="w-24 text-center">Rating</th>
                 </tr>
               </thead>
               <tbody>
                 {rekomendasi.slice(0, 10).map((tempat, index) => (
                   <tr key={tempat.placeId || index}>
-                    <td className="border border-black px-4 py-2 text-center">
-                      {index + 1}
-                    </td>
-                    <td className="border border-black px-4 py-2">
-                      {tempat.place_name || tempat.name}
-                    </td>
-                    <td className="border border-black px-4 py-2 text-center">
+                    <td className="text-center">{index + 1}</td>
+                    <td>{tempat.place_name || tempat.name}</td>
+                    <td className="text-center">
                       {tempat.tag || tempat.kategori}
                     </td>
-                    <td className="border border-black px-4 py-2 text-center">
-                      {tempat.rating}
-                    </td>
+                    <td className="text-center">{tempat.rating}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p className="text-sm italic">
+            <p className="text-sm italic ml-4">
               Belum ada rekomendasi yang tersedia.
             </p>
           )}
         </div>
 
         {/* TABEL POPULER */}
-        <div className="mb-10">
-          <h4 className="font-bold text-lg mb-2">
-            B. Top 5 Destinasi Populer (Seluruh Pengguna)
-          </h4>
+        <div className="mb-10 avoid-break">
+          <h4 className="font-bold text-md mb-3">B. Top 5 Destinasi Populer</h4>
           {populer && populer.length > 0 ? (
-            <table className="w-full border-collapse border border-black text-sm text-left">
+            <table>
               <thead>
-                <tr className="bg-gray-200">
-                  <th className="border border-black px-4 py-2 w-12 text-center">
-                    Peringkat
-                  </th>
-                  <th className="border border-black px-4 py-2">
-                    Nama Destinasi
-                  </th>
-                  <th className="border border-black px-4 py-2 w-32 text-center">
-                    Kategori
-                  </th>
-                  <th className="border border-black px-4 py-2 w-24 text-center">
-                    Rating
-                  </th>
+                <tr>
+                  <th className="w-20 text-center">Peringkat</th>
+                  <th>Nama Destinasi</th>
+                  <th className="w-32 text-center">Kategori</th>
+                  <th className="w-24 text-center">Rating</th>
                 </tr>
               </thead>
               <tbody>
                 {populer.slice(0, 5).map((tempat, index) => (
                   <tr key={tempat.placeId || index}>
-                    <td className="border border-black px-4 py-2 text-center font-bold">
-                      #{index + 1}
-                    </td>
-                    <td className="border border-black px-4 py-2">
-                      {tempat.place_name || tempat.name}
-                    </td>
-                    <td className="border border-black px-4 py-2 text-center">
+                    <td className="text-center font-bold">#{index + 1}</td>
+                    <td>{tempat.place_name || tempat.name}</td>
+                    <td className="text-center">
                       {tempat.tag || tempat.kategori}
                     </td>
-                    <td className="border border-black px-4 py-2 text-center">
-                      {tempat.rating}
-                    </td>
+                    <td className="text-center">{tempat.rating}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p className="text-sm italic">
+            <p className="text-sm italic ml-4">
               Data tempat wisata populer belum tersedia.
             </p>
           )}
         </div>
 
         {/* RUANG TANDA TANGAN */}
-        <div className="mt-16 flex justify-end pr-10 text-black">
+        <div className="mt-16 flex justify-end pr-10 text-black avoid-break">
           <div className="text-center w-64">
-            <p className="mb-20">
+            <p className="mb-24">
               Bogor,{" "}
               {new Date().toLocaleDateString("id-ID", {
                 day: "numeric",
@@ -650,7 +618,7 @@ const HomeTemplate = ({
             <p className="font-bold underline">
               Muhamad Firaz Putra Sri Ardhya
             </p>
-            <p>Administrator KujangTrip</p>
+            <p className="text-sm">Administrator KujangTrip</p>
           </div>
         </div>
       </div>
