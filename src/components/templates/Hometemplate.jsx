@@ -5,6 +5,7 @@ import heroDashboard from "../../assets/images/heroDashboard.png";
 import HomeForm from "../organisms/Homeform";
 import TagSelectionPopup from "../organisms/Popuptag";
 import defaultImage from "../../assets/images/default-gambar.svg";
+import logoKotaBogor from "../../assets/images/logoKotaBogor.png";
 
 const faqDataList = [
   {
@@ -510,22 +511,38 @@ const HomeTemplate = ({
       `}</style>
 
       <div className="hidden print:block w-full bg-white text-black font-serif">
-        {/* KOP SURAT */}
+        {/* KOP SURAT BERDASARKAN REFERENSI GAMBAR */}
         <div className="border-b-4 border-black mb-1 pb-1">
-          <div className="border-b-[1px] border-black pb-4 flex flex-col items-center text-center">
-            <h1 className="text-2xl font-bold uppercase tracking-wider leading-tight">
-              KujangTrip - Sistem Rekomendasi Wisata
-            </h1>
-            <h2 className="text-lg font-bold uppercase tracking-wide leading-tight">
-              Dinas Pariwisata dan Kebudayaan Kota Bogor
-            </h2>
-            <p className="text-sm mt-2">
-              Jl. Pandu Raya No.45, Bantarjati, Kec. Bogor Utara, Kota Bogor,
-              Jawa Barat 16153
-            </p>
-            <p className="text-sm">
-              Telepon: (0251) 8322055 | Email: info@kujangtrip.com
-            </p>
+          <div className="border-b-[1.5px] border-black pb-4 flex items-center justify-between">
+            {/* Logo Kiri */}
+            <div className="w-24 shrink-0 flex justify-center">
+              <img
+                src={logoKotaBogor}
+                alt="Logo Kota Bogor"
+                className="w-20 h-auto object-contain"
+              />
+            </div>
+
+            {/* Teks Tengah */}
+            <div className="flex-1 text-center px-4 text-black">
+              <h1 className="text-xl font-bold uppercase tracking-wide leading-snug">
+                Pemerintah Kota Bogor
+              </h1>
+              <h2 className="text-2xl font-bold uppercase tracking-wider leading-snug mb-1">
+                Dinas Pariwisata dan Kebudayaan
+              </h2>
+              <p className="text-sm">
+                Jl. Pandu Raya No. 45, Tegal Gundil, Bogor Utara, Kota Bogor,
+                Jawa Barat 16121
+              </p>
+              <p className="text-sm mt-0.5">Telp. 0251 832 8827, Faksimile -</p>
+              <p className="text-sm mt-0.5">
+                Situs web : https://disparbud.kotabogor.go.id/
+              </p>
+            </div>
+
+            {/* Spacer Kanan (Agar Teks Benar-benar di Tengah) */}
+            <div className="w-24 shrink-0"></div>
           </div>
         </div>
 

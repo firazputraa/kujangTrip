@@ -82,7 +82,7 @@ const Navbar = () => {
   }, [isOpen]);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
+    <header className="print:hidden fixed top-0 left-0 w-full z-50 bg-white shadow-md">
       <nav role="navigation" className="px-6 py-4">
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo Kiri */}
