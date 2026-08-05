@@ -622,7 +622,7 @@ const HomeTemplate = ({
         </div>
 
         {/* RUANG TANDA TANGAN */}
-        <div className="mt-16 flex justify-end pr-10 text-black avoid-break">
+        <div className="mt-10 flex justify-end pr-10 text-black avoid-break">
           <div className="text-center w-64">
             <p className="mb-24">
               Bogor,{" "}
@@ -632,10 +632,8 @@ const HomeTemplate = ({
                 year: "numeric",
               })}
             </p>
-            <p className="font-bold underline">
-              Muhamad Firaz Putra Sri Ardhya
-            </p>
-            <p className="text-sm">Administrator KujangTrip</p>
+            <p className="font-bold underline">Drs. Firdaus, M.Si.</p>
+            <p className="text-sm">Kepala Dinas Pariwisata dan Kebudayaan</p>
           </div>
         </div>
       </div>

@@ -328,7 +328,7 @@ const SearchTemplate = ({
         </div>
 
         {/* RUANG TANDA TANGAN */}
-        <div className="mt-16 flex justify-end pr-10 text-black avoid-break">
+        <div className="mt-10 flex justify-end pr-10 text-black avoid-break">
           <div className="text-center w-64">
             <p className="mb-24">
               Bogor,{" "}
@@ -339,9 +339,9 @@ const SearchTemplate = ({
               })}
             </p>
             <p className="font-bold underline">
-              Muhamad Firaz Putra Sri Ardhya
+              Drs. Firdaus, M.Si.
             </p>
-            <p className="text-sm">Administrator KujangTrip</p>
+            <p className="text-sm">Kepala Dinas Pariwisata dan Kebudayaan</p>
           </div>
         </div>
       </div>
