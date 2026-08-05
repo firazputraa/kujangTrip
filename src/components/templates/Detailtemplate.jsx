@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../molecules/Destinationcard";
 import LeafletMap from "../molecules/LeafletMap";
 import defaultImage from "../../assets/images/default-gambar.svg";
-import logoKotaBogor from "../../assets/images/logoKotaBogor.png"; // Tambahkan import logo kota bogor
+import logoBogor from "../../assets/images/logo-bogor.png";
 
 const DetailTemplate = ({
   place,
@@ -11,7 +11,7 @@ const DetailTemplate = ({
   isLiked,
   onLikeClick,
   onCardClick,
-  onPrintClick, // PROPS BARU UNTUK FUNGSI PRINT
+  onPrintClick,
 }) => {
   if (isLoading) {
     return (
@@ -53,11 +53,10 @@ const DetailTemplate = ({
   return (
     <>
       {/* ======================================================== */}
-      {/* 1. KONTEN WEBSITE NORMAL (Ditambah class print:hidden) */}
+      {/* 1. KONTEN WEBSITE NORMAL */}
       {/* ======================================================== */}
       <div className="print:hidden relative w-full min-h-screen overflow-hidden bg-gray-50">
-        {/* Dekorasi 1 */}
-        <div className="hidden lg:block absolute top-70 -left-10 z-0 pointer-events-none opacity-60">
+        <div className="hidden lg:block absolute top-40 -left-10 z-0 pointer-events-none opacity-60">
           <svg
             width="250"
             height="200"
@@ -79,8 +78,6 @@ const DetailTemplate = ({
             <circle cx="200" cy="76" r="5" fill="white" />
           </svg>
         </div>
-
-        {/* Dekorasi 2 */}
         <div className="hidden lg:block absolute top-[35%] -right-8 z-0 pointer-events-none opacity-40 rotate-12">
           <svg
             width="140"
@@ -96,8 +93,6 @@ const DetailTemplate = ({
             <circle cx="10" cy="14" r="1" fill="#0038FF" stroke="none" />
           </svg>
         </div>
-
-        {/* Dekorasi 3 */}
         <div className="hidden lg:block absolute bottom-[25%] -left-16 z-0 pointer-events-none opacity-50 -rotate-6">
           <svg
             width="300"
@@ -119,8 +114,6 @@ const DetailTemplate = ({
             />
           </svg>
         </div>
-
-        {/* Dekorasi 4 */}
         <div className="hidden lg:block absolute bottom-40 right-10 z-0 pointer-events-none opacity-50 -rotate-12">
           <svg
             width="100"
@@ -144,17 +137,15 @@ const DetailTemplate = ({
           </svg>
         </div>
 
-        {/* KONTEN UTAMA */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 mt-16 md:mt-24">
-          {/* 1. HEADER SECTION */}
           <div className="flex justify-between items-start gap-4 sm:gap-6 mb-8 md:mb-10">
             <div className="flex-1">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-3 sm:mb-4 tracking-tight">
-                {place.place_name}
-              </h1>
               <span className="inline-block px-4 py-1.5 bg-blue-50 text-[#0038FF] border border-blue-200 rounded-full text-xs sm:text-sm font-bold tracking-wide mb-3 sm:mb-4 shadow-sm">
                 {place.tag}
               </span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-3 sm:mb-4 tracking-tight">
+                {place.place_name}
+              </h1>
               <div className="flex items-start gap-2 text-gray-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -180,15 +171,9 @@ const DetailTemplate = ({
                 </p>
               </div>
             </div>
-
-            {/* Tombol Like */}
             <button
               onClick={onLikeClick}
-              className={`shrink-0 p-3 md:p-4 rounded-full border transition-all duration-300 shadow-sm active:scale-90 group flex items-center justify-center ${
-                isLiked
-                  ? "bg-red-50 border-red-200 hover:bg-red-100"
-                  : "bg-white border-gray-200 hover:border-red-200 hover:bg-red-50"
-              }`}
+              className={`shrink-0 p-3 md:p-4 rounded-full border transition-all duration-300 shadow-sm active:scale-90 group flex items-center justify-center ${isLiked ? "bg-red-50 border-red-200 hover:bg-red-100" : "bg-white border-gray-200 hover:border-red-200 hover:bg-red-50"}`}
               aria-label="Like Place"
             >
               {isLiked ? (
@@ -218,7 +203,6 @@ const DetailTemplate = ({
             </button>
           </div>
 
-          {/* 2. HERO IMAGE SECTION */}
           <div className="w-full h-64 sm:h-80 md:h-110 lg:h-125 rounded-3xl overflow-hidden mb-12 shadow-lg relative group border border-gray-100">
             <img
               src={place.imageUrl}
@@ -229,11 +213,9 @@ const DetailTemplate = ({
                 e.target.src = defaultImage;
               }}
             />
-            <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
           </div>
 
           <div className="flex flex-col gap-8 md:gap-10 mb-16">
-            {/* 3. DESKRIPSI SECTION */}
             <div className="bg-white p-6 sm:p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
               <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-900 flex items-center gap-3">
                 <span className="w-2.5 h-8 bg-[#0038FF] rounded-full"></span>
@@ -244,15 +226,12 @@ const DetailTemplate = ({
               </p>
             </div>
 
-            {/* 4. MAP & BUTTON SECTION */}
             <div className="bg-white p-6 sm:p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 mb-6 md:mb-8">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 flex items-center gap-3">
                   <span className="w-2.5 h-8 bg-[#0038FF] rounded-full"></span>
                   Lokasi Peta
                 </h2>
-
-                {/* === TOMBOL CETAK & LOKASI === */}
                 <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                   <button
                     onClick={onPrintClick}
@@ -303,7 +282,6 @@ const DetailTemplate = ({
                   </a>
                 </div>
               </div>
-
               <div className="w-full h-72 sm:h-96 rounded-2xl overflow-hidden border-2 border-gray-100 shadow-inner relative z-0">
                 <LeafletMap
                   lat={place.latitude}
@@ -314,7 +292,6 @@ const DetailTemplate = ({
             </div>
           </div>
 
-          {/* 5. SIMILAR PLACES SECTION */}
           {similarPlaces && similarPlaces.length > 0 && (
             <div className="bg-gray-50 p-6 sm:p-8 md:p-10 rounded-3xl border border-gray-200 shadow-sm mx-4 sm:mx-6 lg:mx-8">
               <div className="mb-8">
@@ -350,11 +327,11 @@ const DetailTemplate = ({
       </div>
 
       {/* ======================================================== */}
-      {/* 2. KERTAS LAPORAN CETAK PDF (Muncul HANYA saat dicetak) */}
+      {/* 2. KERTAS LAPORAN CETAK PDF (Desain Rapi 1 Halaman) */}
       {/* ======================================================== */}
       <style>{`
         @media print {
-          @page { size: A4 portrait; margin: 20mm; }
+          @page { size: A4 portrait; margin: 15mm; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Times New Roman', Times, serif; }
           .avoid-break { page-break-inside: avoid; }
         }
@@ -363,69 +340,68 @@ const DetailTemplate = ({
       <div className="hidden print:block w-full bg-white text-black font-serif">
         {/* KOP SURAT */}
         <div className="border-b-4 border-black mb-1 pb-1">
-          <div className="border-b-[1.5px] border-black pb-4 flex items-center justify-between">
-            <div className="w-24 shrink-0 flex justify-center">
+          <div className="border-b-[1.5px] border-black pb-3 flex items-center justify-between">
+            <div className="w-20 shrink-0 flex justify-center">
               <img
-                src={logoKotaBogor}
+                src={logoBogor}
                 alt="Logo Kota Bogor"
-                className="w-20 h-auto object-contain"
+                className="w-16 h-auto object-contain"
               />
             </div>
             <div className="flex-1 text-center px-4 text-black">
-              <h1 className="text-xl font-bold uppercase tracking-wide leading-snug">
+              <h1 className="text-lg font-bold uppercase tracking-wide leading-snug">
                 Pemerintah Kota Bogor
               </h1>
-              <h2 className="text-2xl font-bold uppercase tracking-wider leading-snug mb-1">
+              <h2 className="text-xl font-bold uppercase tracking-wider leading-snug mb-1">
                 Dinas Pariwisata dan Kebudayaan
               </h2>
-              <p className="text-sm">
+              <p className="text-xs">
                 Jl. Pandu Raya No. 45, Tegal Gundil, Bogor Utara, Kota Bogor,
                 Jawa Barat 16121
               </p>
-              <p className="text-sm mt-0.5">Telp. 0251 832 8827, Faksimile -</p>
-              <p className="text-sm mt-0.5">
+              <p className="text-xs mt-0.5">Telp. 0251 832 8827, Faksimile -</p>
+              <p className="text-xs mt-0.5">
                 Situs web : https://disparbud.kotabogor.go.id/
               </p>
             </div>
-            <div className="w-24 shrink-0"></div>
+            <div className="w-20 shrink-0"></div>
           </div>
         </div>
 
         {/* JUDUL LAPORAN */}
-        <div className="text-center mt-6 mb-8">
-          <h3 className="text-xl font-bold uppercase underline mb-1">
+        <div className="text-center mt-5 mb-5">
+          <h3 className="text-lg font-bold uppercase underline mb-1">
             Informasi Detail Destinasi Wisata
           </h3>
-          <p className="italic text-sm">Sistem Rekomendasi KujangTrip</p>
+          <p className="italic text-xs">Sistem Rekomendasi KujangTrip</p>
         </div>
 
         {/* GAMBAR DAN INFO UTAMA */}
-        <div className="mb-6 flex gap-6 items-start avoid-break">
-          {/* Gambar - Membantu wisatawan mendapat visualisasi sebelum berangkat */}
+        <div className="mb-4 flex gap-6 items-start avoid-break">
           <div className="w-1/3 shrink-0">
             <img
               src={place.imageUrl || defaultImage}
               alt={place.place_name}
-              className="w-full h-auto max-h-64 object-cover border border-gray-300 rounded-lg shadow-sm"
+              className="w-full h-auto max-h-48 object-cover border border-gray-300 rounded-lg shadow-sm"
             />
           </div>
           <div className="w-2/3">
-            <h2 className="text-3xl font-extrabold text-black mb-2 leading-tight">
+            <h2 className="text-2xl font-extrabold text-black mb-2 leading-tight">
               {place.place_name}
             </h2>
-            <div className="mb-4">
-              <span className="bg-gray-200 px-3 py-1 text-sm font-bold uppercase tracking-wider border border-gray-400 rounded-md">
+            <div className="mb-3">
+              <span className="bg-gray-200 px-3 py-1 text-xs font-bold uppercase tracking-wider border border-gray-400 rounded-md">
                 Kategori: {place.tag}
               </span>
             </div>
-            <p className="text-md mb-2">
+            <p className="text-sm mb-1.5">
               <strong>Rating:</strong> ⭐ {place.rating} / 5.0
             </p>
-            <p className="text-md mb-2">
+            <p className="text-sm mb-1.5">
               <strong>Titik Koordinat:</strong> {place.latitude},{" "}
               {place.longitude}
             </p>
-            <p className="text-md leading-relaxed">
+            <p className="text-sm leading-relaxed">
               <strong>Alamat Lengkap:</strong> <br />
               {place.address}
             </p>
@@ -433,19 +409,19 @@ const DetailTemplate = ({
         </div>
 
         {/* DESKRIPSI LENGKAP */}
-        <div className="mb-10 avoid-break mt-8">
-          <h4 className="font-bold text-lg mb-3 border-b-2 border-black inline-block pb-1">
+        <div className="mb-4 avoid-break mt-4">
+          <h4 className="font-bold text-md mb-2 border-b-2 border-black inline-block pb-1">
             Deskripsi Tempat Wisata
           </h4>
-          <p className="text-md leading-relaxed text-justify mt-2">
+          <p className="text-sm leading-relaxed text-justify mt-1">
             {place.description}
           </p>
         </div>
 
         {/* RUANG TANDA TANGAN */}
-        <div className="mt-10 flex justify-end pr-10 text-black avoid-break">
-          <div className="text-center w-64">
-            <p className="mb-24">
+        <div className="mt-8 flex justify-end pr-8 text-black avoid-break">
+          <div className="text-center w-56">
+            <p className="mb-16 text-sm">
               Bogor,{" "}
               {new Date().toLocaleDateString("id-ID", {
                 day: "numeric",
@@ -453,8 +429,8 @@ const DetailTemplate = ({
                 year: "numeric",
               })}
             </p>
-            <p className="font-bold underline">Drs. Firdaus, M.Si.</p>
-            <p className="text-sm">Kepala Dinas Pariwisata dan Kebudayaan</p>
+            <p className="font-bold underline text-sm">Drs. Firdaus, M.Si</p>
+            <p className="text-xs">Kepala Dinas Pariwisata dan Kebudayaan</p>
           </div>
         </div>
       </div>

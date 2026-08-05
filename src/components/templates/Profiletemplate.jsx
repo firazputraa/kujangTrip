@@ -2,7 +2,7 @@ import React from "react";
 import InputField from "../molecules/Inputfield";
 import DestinationCard from "../molecules/Destinationcard";
 import profile1 from "../../assets/images/profile1.jpg";
-import logoKotaBogor from "../../assets/images/logoKotaBogor.png";
+import logoBogor from "../../assets/images/logo-bogor.png";
 
 const DAFTAR_KATEGORI_WISATA = [
   "Alam",
@@ -28,7 +28,6 @@ const ProfileTemplate = ({
 }) => {
   return (
     <>
-      {/* --- KONTEN WEBSITE (Disembunyikan saat print) --- */}
       <div className="print:hidden min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto space-y-8 md:space-y-10">
           {isLoading ? (
@@ -37,8 +36,9 @@ const ProfileTemplate = ({
             </div>
           ) : (
             <>
-              {/* Bagian Profil */}
+              {/* SECTION PROFIL WEB VIEW */}
               <section className="bg-white shadow-md hover:shadow-lg transition-shadow border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+                {/* ... (Konten profil web kamu yang tidak diubah) ... */}
                 <div className="w-full md:w-64 flex flex-col items-center shrink-0">
                   <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col items-center w-full max-w-xs md:max-w-full shadow-sm">
                     <div className="relative w-32 h-32 sm:w-36 sm:h-36">
@@ -176,7 +176,7 @@ const ProfileTemplate = ({
                 </div>
               </section>
 
-              {/* Bagian Wisata Disukai */}
+              {/* SECTION WISATA DISUKAI WEB VIEW */}
               <section className="bg-white shadow-md border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-10">
                 <div className="border-b border-gray-200 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-3 flex-wrap">
@@ -187,10 +187,9 @@ const ProfileTemplate = ({
                       {likePlaces?.length || 0} Destinasi Disimpan
                     </span>
                   </div>
-                  {/* TOMBOL CETAK */}
                   <button
                     onClick={onPrintClick}
-                    className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +208,6 @@ const ProfileTemplate = ({
                     Cetak Laporan Profil
                   </button>
                 </div>
-
                 {likePlaces && likePlaces.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
                     {likePlaces.map((tempat, index) => {
@@ -252,69 +250,64 @@ const ProfileTemplate = ({
       </div>
 
       {/* ======================================================== */}
-      {/* 2. KERTAS LAPORAN CETAK PDF (Dengan CSS Khusus Tinta/Warna) */}
+      {/* 2. KERTAS LAPORAN CETAK PDF (Desain Rapi 1 Halaman) */}
       {/* ======================================================== */}
       <style>{`
         @media print {
-          @page { size: A4 portrait; margin: 20mm; }
+          @page { size: A4 portrait; margin: 15mm; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Times New Roman', Times, serif; }
           .avoid-break { page-break-inside: avoid; }
-          table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-          th, td { border: 1px solid #000; padding: 8px 12px; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+          th, td { border: 1px solid #000; padding: 6px 10px; font-size: 12px; }
           th { background-color: #f3f4f6 !important; font-weight: bold; }
         }
       `}</style>
 
       <div className="hidden print:block w-full bg-white text-black font-serif">
-        {/* KOP SURAT (Dipercantik dengan border double) */}
+        {/* KOP SURAT */}
         <div className="border-b-4 border-black mb-1 pb-1">
-          <div className="border-b-[1.5px] border-black pb-4 flex items-center justify-between">
-            {/* Logo Kiri */}
-            <div className="w-24 shrink-0 flex justify-center">
+          <div className="border-b-[1.5px] border-black pb-3 flex items-center justify-between">
+            <div className="w-20 shrink-0 flex justify-center">
               <img
-                src={logoKotaBogor}
+                src={logoBogor}
                 alt="Logo Kota Bogor"
-                className="w-20 h-auto object-contain"
+                className="w-16 h-auto object-contain"
               />
             </div>
-
-            {/* Teks Tengah */}
             <div className="flex-1 text-center px-4 text-black">
-              <h1 className="text-xl font-bold uppercase tracking-wide leading-snug">
+              <h1 className="text-lg font-bold uppercase tracking-wide leading-snug">
                 Pemerintah Kota Bogor
               </h1>
-              <h2 className="text-2xl font-bold uppercase tracking-wider leading-snug mb-1">
+              <h2 className="text-xl font-bold uppercase tracking-wider leading-snug mb-1">
                 Dinas Pariwisata dan Kebudayaan
               </h2>
-              <p className="text-sm">
+              <p className="text-xs">
                 Jl. Pandu Raya No. 45, Tegal Gundil, Bogor Utara, Kota Bogor,
                 Jawa Barat 16121
               </p>
-              <p className="text-sm mt-0.5">Telp. 0251 832 8827, Faksimile -</p>
-              <p className="text-sm mt-0.5">
+              <p className="text-xs mt-0.5">Telp. 0251 832 8827, Faksimile -</p>
+              <p className="text-xs mt-0.5">
                 Situs web : https://disparbud.kotabogor.go.id/
               </p>
             </div>
-
-            {/* Spacer Kanan (Agar Teks Benar-benar di Tengah) */}
-            <div className="w-24 shrink-0"></div>
+            <div className="w-20 shrink-0"></div>
           </div>
         </div>
 
         {/* JUDUL LAPORAN */}
-        <div className="text-center mt-6 mb-8">
-          <h3 className="text-xl font-bold uppercase underline">
+        <div className="text-center mt-5 mb-6">
+          <h3 className="text-lg font-bold uppercase underline">
             Laporan Profil & Wisata Disukai
           </h3>
         </div>
 
         {/* DATA PROFIL */}
-        <div className="mb-8 avoid-break">
-          <h4 className="font-bold text-md mb-3">A. Data Pengguna</h4>
-          <table className="w-full max-w-xl text-left text-sm border-none">
+        <div className="mb-6 avoid-break">
+          <h4 className="font-bold text-sm mb-2">A. Data Pengguna</h4>
+          <table className="w-full max-w-xl text-left text-xs border-none">
             <tbody>
               <tr>
-                <td className="w-48 font-bold border-none py-1 px-0">
+                <td className="w-40 font-bold border-none py-1 px-0">
                   Nama Pengguna
                 </td>
                 <td className="border-none py-1 px-0">
@@ -342,16 +335,16 @@ const ProfileTemplate = ({
         </div>
 
         {/* TABEL WISATA DISUKAI */}
-        <div className="mb-10">
-          <h4 className="font-bold text-md mb-3">B. Daftar Wisata Disukai</h4>
+        <div className="mb-6">
+          <h4 className="font-bold text-sm mb-2">B. Daftar Wisata Disukai</h4>
           {likePlaces && likePlaces.length > 0 ? (
             <table>
               <thead>
                 <tr>
-                  <th className="w-12 text-center">No</th>
+                  <th className="w-10 text-center">No</th>
                   <th>Nama Destinasi</th>
-                  <th className="w-32 text-center">Kategori</th>
-                  <th className="w-24 text-center">Rating</th>
+                  <th className="w-28 text-center">Kategori</th>
+                  <th className="w-16 text-center">Rating</th>
                 </tr>
               </thead>
               <tbody>
@@ -371,16 +364,16 @@ const ProfileTemplate = ({
               </tbody>
             </table>
           ) : (
-            <p className="text-sm italic ml-4">
+            <p className="text-xs italic ml-4">
               Pengguna belum menyukai wisata apapun.
             </p>
           )}
         </div>
 
         {/* RUANG TANDA TANGAN */}
-        <div className="mt-10 flex justify-end pr-10 text-black avoid-break">
-          <div className="text-center w-64">
-            <p className="mb-24">
+        <div className="mt-8 flex justify-end pr-8 text-black avoid-break">
+          <div className="text-center w-56">
+            <p className="mb-16 text-sm">
               Bogor,{" "}
               {new Date().toLocaleDateString("id-ID", {
                 day: "numeric",
@@ -388,8 +381,8 @@ const ProfileTemplate = ({
                 year: "numeric",
               })}
             </p>
-            <p className="font-bold underline">Drs. Firdaus, M.Si.</p>
-            <p className="text-sm">Kepala Dinas Pariwisata dan Kebudayaan</p>
+            <p className="font-bold underline text-sm">Drs. Firdaus, M.Si</p>
+            <p className="text-xs">Kepala Dinas Pariwisata dan Kebudayaan</p>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../molecules/Destinationcard";
-import logoKotaBogor from "../../assets/images/logoKotaBogor.png";
+import logoBogor from "../../assets/images/logo-bogor.png";
 
 const SearchTemplate = ({
   searchQuery,
@@ -16,9 +16,8 @@ const SearchTemplate = ({
 }) => {
   return (
     <>
-      {/* --- KONTEN WEBSITE (Disembunyikan saat print) --- */}
+      {/* --- KONTEN WEBSITE --- */}
       <div className="print:hidden relative overflow-hidden min-h-screen bg-white pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-        {/* Dekorasi 1-4 Tetap seperti aslinya */}
         <div className="hidden lg:block absolute top-20 -left-10 z-0 pointer-events-none opacity-60">
           <svg
             width="350"
@@ -146,12 +145,11 @@ const SearchTemplate = ({
               </div>
             </form>
 
-            {/* TOMBOL CETAK PDF */}
             {searchResults.length > 0 && !isLoading && (
               <div className="max-w-2xl mx-auto flex justify-end mb-10">
                 <button
                   onClick={onPrintClick}
-                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-xl transition-all shadow-md flex items-center gap-2"
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-xl transition-all shadow-md flex items-center gap-2 transform hover:-translate-y-0.5"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -230,15 +228,15 @@ const SearchTemplate = ({
       </div>
 
       {/* ======================================================== */}
-      {/* 2. KERTAS LAPORAN CETAK PDF */}
+      {/* 2. KERTAS LAPORAN CETAK PDF (Desain Rapi 1 Halaman) */}
       {/* ======================================================== */}
       <style>{`
         @media print {
-          @page { size: A4 portrait; margin: 20mm; }
+          @page { size: A4 portrait; margin: 15mm; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Times New Roman', Times, serif; }
           .avoid-break { page-break-inside: avoid; }
-          table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-          th, td { border: 1px solid #000; padding: 8px 12px; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+          th, td { border: 1px solid #000; padding: 6px 10px; font-size: 12px; }
           th { background-color: #f3f4f6 !important; font-weight: bold; }
         }
       `}</style>
@@ -246,59 +244,54 @@ const SearchTemplate = ({
       <div className="hidden print:block w-full bg-white text-black font-serif">
         {/* KOP SURAT */}
         <div className="border-b-4 border-black mb-1 pb-1">
-          <div className="border-b-[1.5px] border-black pb-4 flex items-center justify-between">
-            {/* Logo Kiri */}
-            <div className="w-24 shrink-0 flex justify-center">
+          <div className="border-b-[1.5px] border-black pb-3 flex items-center justify-between">
+            <div className="w-20 shrink-0 flex justify-center">
               <img
-                src={logoKotaBogor}
+                src={logoBogor}
                 alt="Logo Kota Bogor"
-                className="w-20 h-auto object-contain"
+                className="w-16 h-auto object-contain"
               />
             </div>
-
-            {/* Teks Tengah */}
             <div className="flex-1 text-center px-4 text-black">
-              <h1 className="text-xl font-bold uppercase tracking-wide leading-snug">
+              <h1 className="text-lg font-bold uppercase tracking-wide leading-snug">
                 Pemerintah Kota Bogor
               </h1>
-              <h2 className="text-2xl font-bold uppercase tracking-wider leading-snug mb-1">
+              <h2 className="text-xl font-bold uppercase tracking-wider leading-snug mb-1">
                 Dinas Pariwisata dan Kebudayaan
               </h2>
-              <p className="text-sm">
+              <p className="text-xs">
                 Jl. Pandu Raya No. 45, Tegal Gundil, Bogor Utara, Kota Bogor,
                 Jawa Barat 16121
               </p>
-              <p className="text-sm mt-0.5">Telp. 0251 832 8827, Faksimile -</p>
-              <p className="text-sm mt-0.5">
+              <p className="text-xs mt-0.5">Telp. 0251 832 8827, Faksimile -</p>
+              <p className="text-xs mt-0.5">
                 Situs web : https://disparbud.kotabogor.go.id/
               </p>
             </div>
-
-            {/* Spacer Kanan (Agar Teks Benar-benar di Tengah) */}
-            <div className="w-24 shrink-0"></div>
+            <div className="w-20 shrink-0"></div>
           </div>
         </div>
 
         {/* JUDUL LAPORAN */}
-        <div className="text-center mt-6 mb-8">
-          <h3 className="text-xl font-bold uppercase underline mb-1">
+        <div className="text-center mt-5 mb-5">
+          <h3 className="text-lg font-bold uppercase underline mb-1">
             Laporan Hasil Pencarian Wisata
           </h3>
-          <p className="italic text-sm">
+          <p className="italic text-xs">
             Kata Kunci: "{searchQuery || "Seluruh Destinasi"}"
           </p>
         </div>
 
         {/* TABEL HASIL PENCARIAN */}
-        <div className="mb-10">
+        <div className="mb-6">
           {searchResults && searchResults.length > 0 ? (
             <table>
               <thead>
                 <tr>
-                  <th className="w-12 text-center">No</th>
+                  <th className="w-10 text-center">No</th>
                   <th className="w-1/4">Nama Destinasi</th>
                   <th className="w-24 text-center">Kategori</th>
-                  <th className="w-20 text-center">Rating</th>
+                  <th className="w-16 text-center">Rating</th>
                   <th>Alamat Lengkap</th>
                 </tr>
               </thead>
@@ -321,16 +314,16 @@ const SearchTemplate = ({
               </tbody>
             </table>
           ) : (
-            <p className="text-sm italic text-center border border-black py-10">
+            <p className="text-xs italic text-center border border-black py-10">
               Data tidak ditemukan.
             </p>
           )}
         </div>
 
         {/* RUANG TANDA TANGAN */}
-        <div className="mt-10 flex justify-end pr-10 text-black avoid-break">
-          <div className="text-center w-64">
-            <p className="mb-24">
+        <div className="mt-8 flex justify-end pr-8 text-black avoid-break">
+          <div className="text-center w-56">
+            <p className="mb-16 text-sm">
               Bogor,{" "}
               {new Date().toLocaleDateString("id-ID", {
                 day: "numeric",
@@ -338,10 +331,8 @@ const SearchTemplate = ({
                 year: "numeric",
               })}
             </p>
-            <p className="font-bold underline">
-              Drs. Firdaus, M.Si.
-            </p>
-            <p className="text-sm">Kepala Dinas Pariwisata dan Kebudayaan</p>
+            <p className="font-bold underline text-sm">Drs. Firdaus, M.Si</p>
+            <p className="text-xs">Kepala Dinas Pariwisata dan Kebudayaan</p>
           </div>
         </div>
       </div>
