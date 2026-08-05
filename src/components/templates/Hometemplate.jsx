@@ -502,6 +502,10 @@ const HomeTemplate = ({
       <style>{`
         @media print {
           @page { size: A4 portrait; margin: 15mm; }
+          
+          /* --- TAMBAHKAN BARIS INI UNTUK MENGHILANGKAN EFEK ABU-ABU BAWAH --- */
+          html, body, #root { background-color: #FFFFFF !important; }
+          
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Times New Roman', Times, serif; }
           .avoid-break { page-break-inside: avoid; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
