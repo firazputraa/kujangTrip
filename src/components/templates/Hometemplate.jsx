@@ -503,10 +503,17 @@ const HomeTemplate = ({
         @media print {
           @page { size: A4 portrait; margin: 15mm; }
           
-          /* --- TAMBAHKAN BARIS INI UNTUK MENGHILANGKAN EFEK ABU-ABU BAWAH --- */
-          html, body, #root { background-color: #FFFFFF !important; }
+          /* --- INI KUNCI UNTUK MENGHILANGKAN BACKGROUND ABU-ABU --- */
+          html, body, #root, #root > div { 
+            background-color: #FFFFFF !important; 
+          }
           
-          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Times New Roman', Times, serif; }
+          body { 
+            -webkit-print-color-adjust: exact !important; 
+            print-color-adjust: exact !important; 
+            font-family: 'Times New Roman', Times, serif; 
+          }
+          
           .avoid-break { page-break-inside: avoid; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
           th, td { border: 1px solid #000; padding: 6px 10px; font-size: 12px; }
