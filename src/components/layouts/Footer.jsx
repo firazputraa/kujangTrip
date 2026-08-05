@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-gray-600 pt-16 pb-8 border-t-3 border-gray-300 shadow-xl">
+    <footer className="print:hidden bg-white text-gray-600 pt-16 pb-8 border-t-3 border-gray-300 shadow-xl">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         {/* --- BAGIAN ATAS: GRID 4 KOLOM --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16">
