@@ -30,7 +30,7 @@ const Layout = () => {
   const isProfilePage = location.pathname === "/profile";
 
   return (
-    <section className="min-h-screen bg-gray-50 flex flex-col">
+    <section className="min-h-screen bg-gray-50 print:bg-white flex flex-col">
       <Navbar />
       <ScrollOnTop />
       <main className="grow">
