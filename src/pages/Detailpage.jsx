@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/Authcontext";
 import axios from "axios";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 
 import DetailTemplate from "../components/templates/Detailtemplate";
 import dataWisata from "../data/dataset_wisata_gabungan_cleaned_final_1.2.json";
@@ -66,7 +66,7 @@ const DetailPage = () => {
     }
 
     const previousLikeState = isLiked;
-    setIsLiked(!isLiked); 
+    setIsLiked(!isLiked);
 
     try {
       const response = await axios.post(
@@ -82,7 +82,7 @@ const DetailPage = () => {
       );
       console.log("✅ Berhasil:", response.data.message);
     } catch (error) {
-      setIsLiked(previousLikeState); 
+      setIsLiked(previousLikeState);
       console.error("❌ Gagal mengirim interaksi Like:", error);
       Swal.fire({
         icon: "error",
@@ -97,6 +97,11 @@ const DetailPage = () => {
     navigate(`/detail/${placeId}`);
   };
 
+  // === FUNGSI PRINT ===
+  const handlePrintClick = () => {
+    window.print();
+  };
+
   return (
     <DetailTemplate
       place={placeDetail}
@@ -105,6 +110,7 @@ const DetailPage = () => {
       isLiked={isLiked}
       onLikeClick={handleLikeClick}
       onCardClick={handleCardClick}
+      onPrintClick={handlePrintClick} // PASSING PROPS INI KE TEMPLATE
     />
   );
 };
