@@ -387,6 +387,7 @@ const ProfileTemplate = ({
             <p className="mb-16 text-sm">
               Bogor,{" "}
               {new Date().toLocaleDateString("id-ID", {
+                weekday: "long",
                 day: "numeric",
                 month: "long",
                 year: "numeric",

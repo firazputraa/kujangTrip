@@ -96,8 +96,6 @@ const DetailPage = () => {
   const handleCardClick = (placeId) => {
     navigate(`/detail/${placeId}`);
   };
-
-  // === FUNGSI PRINT ===
   const handlePrintClick = () => {
     window.print();
   };
@@ -110,7 +108,7 @@ const DetailPage = () => {
       isLiked={isLiked}
       onLikeClick={handleLikeClick}
       onCardClick={handleCardClick}
-      onPrintClick={handlePrintClick} // PASSING PROPS INI KE TEMPLATE
+      onPrintClick={handlePrintClick} 
     />
   );
 };

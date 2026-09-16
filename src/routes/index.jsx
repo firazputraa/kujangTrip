@@ -23,10 +23,7 @@ import FaqPage from "../pages/Faqpage";
 import Aboutpage from "../pages/Aboutpage.jsx";
 
 const Layout = () => {
-  // 2. Ambil informasi rute saat ini
   const location = useLocation();
-
-  // 3. Buat kondisi: true jika rute saat ini adalah "/profile"
   const isProfilePage = location.pathname === "/profile";
 
   return (
@@ -36,8 +33,6 @@ const Layout = () => {
       <main className="grow">
         <Outlet />
       </main>
-
-      {/* 4. Render Footer HANYA JIKA BUKAN di halaman profil (!isProfilePage) */}
       {!isProfilePage && <Footer />}
     </section>
   );
