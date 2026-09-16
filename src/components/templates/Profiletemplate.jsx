@@ -383,15 +383,17 @@ const ProfileTemplate = ({
 
         {/* RUANG TANDA TANGAN */}
         <div className="mt-8 flex justify-end pr-8 text-black avoid-break">
-          <div className="text-center w-56">
+          <div className="text-center w-64">
             <p className="mb-16 text-sm">
               Bogor,{" "}
-              {new Date().toLocaleDateString("id-ID", {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
+              {new Date()
+                .toLocaleDateString("id-ID", {
+                  weekday: "long",
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })
+                .replace(",", "")}
             </p>
             <p className="font-bold underline text-sm">Drs. Firdaus, M.Si</p>
             <p className="text-xs">Kepala Dinas Pariwisata dan Kebudayaan</p>
